@@ -83,7 +83,7 @@ LogLens-AI/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repository-link>
+git clone https://github.com/dhruvggaur-26/LogLens-AI.git
 cd LogLens-AI
 ```
 
@@ -135,10 +135,10 @@ For frontend deployment, create a `.env` file inside the `client` folder if need
 VITE_API_BASE_URL=http://localhost:5000
 ```
 
-For production, use your deployed backend URL:
+For production, use your deployed backend URL:https://loglens-ai-backend.onrender.com
 
 ```env
-VITE_API_BASE_URL=https://your-backend-url.onrender.com
+VITE_API_BASE_URL=https://loglens-ai-backend.onrender.com
 ```
 
 ## Usage
@@ -246,5 +246,5 @@ Dhruv Gaur
 
 ## Live Demo
 
-Frontend:https://log-lens-ai-seven.vercel.app/ 
-Backend: https://loglens-ai-backend.onrender.com
+Frontend:https:https://log-lens-ai-seven.vercel.app/
+Backend: https:https://loglens-ai-backend.onrender.com
