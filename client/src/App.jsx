@@ -25,6 +25,8 @@ import {
 } from "recharts";
 
 function App() {
+  const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
   const [logText, setLogText] = useState("");
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,7 +41,7 @@ function App() {
 
   const checkBackendStatus = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/");
+    const res = await axios.get(`${API_BASE_URL}/`);
 
     if (res.data.success) {
       setBackendStatus("Connected");
@@ -79,7 +81,7 @@ at XMLHttpRequest.onloadend`,
 
   const fetchLogHistory = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/logs");
+    const res = await axios.get(`${API_BASE_URL}/api/logs`);
 
     if (res.data.success) {
       setHistory(res.data.logs);
@@ -213,9 +215,9 @@ const handleFileUpload = (e) => {
       setLoading(true);
       setAnalysis(null);
 
-      const res = await axios.post("http://localhost:5000/api/analyze-log", {
-        logText,
-      });
+      const res = await axios.post(`${API_BASE_URL}/api/analyze-log`, {
+  logText,
+});
 
       if (res.data.success) {
   setAnalysis(res.data.analysis);
@@ -241,7 +243,7 @@ const handleFileUpload = (e) => {
 
     if (!confirmDelete) return;
 
-    const res = await axios.delete(`http://localhost:5000/api/logs/${id}`);
+    const res = await axios.delete(`${API_BASE_URL}/api/logs/${id}`);
 
     if (res.data.success) {
       fetchLogHistory();
