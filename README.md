@@ -1,77 +1,68 @@
 # LogLens AI
 
-LogLens AI is an AI-powered production log debugging platform that helps developers analyze server, API, database, and frontend errors using Gemini AI.
+LogLens AI is an AI-powered production log debugging platform where users can paste server logs or upload `.log` / `.txt` files and get instant AI-generated analysis including severity, error type, root cause, possible fixes, and explanation.
 
-Users can paste logs or upload `.log` / `.txt` files and instantly get severity classification, root cause analysis, possible fixes, explanations, analytics, and downloadable debugging reports.
+It also provides MongoDB-based log history, analytics charts, search and filter options, copy/download reports, and a modern SaaS-style dashboard for debugging application errors faster.
 
----
+## Features
 
-## Live Links
+* AI-powered log analysis using Google Gemini API
+* Paste raw server, API, database, or frontend logs
+* Upload `.log` and `.txt` files for analysis
+* Sample log buttons for quick demo testing
+* Severity classification: Low, Medium, High, Critical
+* Error type detection such as Server, Database, API, Frontend, Authentication, and Network
+* Root cause analysis for production errors
+* AI-generated possible fixes and simple explanation
+* MongoDB-based log analysis history
+* Search logs by keyword, error type, severity, or log content
+* Filter history by severity level
+* Dashboard stats cards for total logs, critical issues, high severity logs, and common error type
+* Analytics charts for severity distribution and error type frequency
+* View complete AI analysis in a detailed modal
+* Copy AI-generated debugging report
+* Download report as `.txt` file
+* Delete saved log reports from history
+* Dynamic backend connection status indicator
+* Modern responsive SaaS-style dark UI
 
-- **Live Demo:** https://log-lens-ai-seven.vercel.app/
-- **Frontend:** https://log-lens-ai-seven.vercel.app/
-- **Backend API:** https://resumeiq-ai-backend.onrender.com
-- **GitHub Repository:** https://github.com/dhruvggaur-26
+## Tech Stack
 
----
+### Frontend
 
-## Preview
+* React.js
+* Vite
+* Tailwind CSS
+* Axios
+* Lucide React
+* Recharts
 
-Add your project screenshots here.
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* Google Gemini API
+* dotenv
+* CORS
+
+### Deployment
+
+* Frontend: Vercel
+* Backend: Render
+* Database: MongoDB Atlas
+
+## Project Structure
 
 ```txt
-Dashboard Screenshot
-AI Analysis Screenshot
-History & Analytics Screenshot
-Features
-AI-powered log analysis using Gemini API
-Paste raw server, API, database, or frontend logs
-Upload .log and .txt files
-Sample error log buttons for quick demo
-Severity detection: Low, Medium, High, Critical
-Error type classification
-Root cause analysis
-AI-generated possible fixes
-Simple explanation for junior developers
-MongoDB-based analysis history
-Search previous log reports
-Filter reports by severity
-Dashboard stats cards
-Analytics charts for severity and error types
-View complete analysis in a modal
-Copy AI-generated report
-Download report as .txt
-Delete saved log reports
-Dynamic backend connection status
-Modern SaaS-style responsive UI
-Tech Stack
-Frontend
-React.js
-Vite
-Tailwind CSS
-Axios
-Lucide React
-Recharts
-Backend
-Node.js
-Express.js
-MongoDB Atlas
-Mongoose
-Gemini API
-Dotenv
-CORS
-Deployment
-Frontend: Vercel
-Backend: Render
-Database: MongoDB Atlas
-Project Structure
 LogLens-AI/
 ├── client/
 │   ├── public/
 │   ├── src/
 │   │   ├── App.jsx
-│   │   ├── index.css
-│   │   └── main.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
 │   ├── package.json
 │   ├── tailwind.config.js
 │   └── vite.config.js
@@ -85,157 +76,175 @@ LogLens-AI/
 │
 ├── .gitignore
 └── README.md
-Environment Variables
+```
 
-Create a .env file inside the server folder.
+## Installation
 
-PORT=5000
-GEMINI_API_KEY=your_gemini_api_key_here
-MONGO_URI=your_mongodb_connection_string_here
+### 1. Clone the repository
 
-Important: Do not upload your .env file to GitHub.
-
-Installation and Setup
-
-Follow these steps to run LogLens AI locally.
-
-1. Clone the Repository
-git clone YOUR_GITHUB_REPO_LINK
+```bash
+git clone <your-repository-link>
 cd LogLens-AI
-2. Setup Backend
+```
 
-Go to the backend folder:
+### 2. Install backend dependencies
 
+Open terminal inside the project folder:
+
+```bash
 cd server
-
-Install backend dependencies:
-
 npm install
+npm run dev
+```
 
-Create a .env file inside the server folder:
+The backend will run on:
 
+```txt
+http://localhost:5000
+```
+
+### 3. Install frontend dependencies
+
+Open another terminal:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+The frontend will run on:
+
+```txt
+http://localhost:5173
+```
+
+## Environment Variables
+
+Create a `.env` file inside the `server` folder:
+
+```env
 PORT=5000
 GEMINI_API_KEY=your_gemini_api_key_here
 MONGO_URI=your_mongodb_connection_string_here
+```
 
-Start the backend server:
+For frontend deployment, create a `.env` file inside the `client` folder if needed:
 
-npm run dev
-
-If everything is working, you should see:
-
-LogLens AI Backend running on port 5000
-MongoDB connected successfully
-
-Backend will run on:
-
-http://localhost:5000
-3. Setup Frontend
-
-Open a new terminal.
-
-Go to the frontend folder:
-
-cd client
-
-Install frontend dependencies:
-
-npm install
-
-Create a .env file inside the client folder if needed:
-
+```env
 VITE_API_BASE_URL=http://localhost:5000
+```
 
-Start the frontend:
+For production, use your deployed backend URL:
 
-npm run dev
+```env
+VITE_API_BASE_URL=https://your-backend-url.onrender.com
+```
 
-Frontend will run on:
+## Usage
 
-http://localhost:5173
-API Endpoints
-Check Backend Status
-GET /
-Analyze Log
-POST /api/analyze-log
+1. Open the frontend in the browser.
+2. Paste an error log manually or upload a `.log` / `.txt` file.
+3. Click on the **Analyze Logs** button.
+4. LogLens AI will generate:
+   * Severity
+   * Error Type
+   * Summary
+   * Root Cause
+   * Possible Fix
+   * Explanation
+5. View saved reports in the Recent Analysis History section.
+6. Search or filter previous logs by severity.
+7. Open detailed analysis in a modal.
+8. Copy or download the AI-generated debugging report.
+9. Delete old log reports if needed.
 
-Request body:
+## Sample Log
 
-{
-  "logText": "Error: listen EADDRINUSE: address already in use :::5000"
-}
-Fetch Log History
-GET /api/logs
-Delete Log
-DELETE /api/logs/:id
-Sample Log for Testing
+```txt
 Error: listen EADDRINUSE: address already in use :::5000
 at Server.setupListenHandle
 at listenInCluster
+```
 
-After clicking Analyze Logs, LogLens AI generates:
+## Sample AI Output
 
-Severity
-Error Type
-Summary
-Root Cause
-Possible Fix
-Explanation
-
-The analysis is also saved in MongoDB history.
-
-Sample AI Report
-LogLens AI Report
-
+```txt
 Severity: High
+
 Error Type: Server
 
 Summary:
-The application failed to start because it could not bind to port 5000.
+The application failed to start because port 5000 is already in use.
 
 Root Cause:
-Another process is already using TCP port 5000.
+Another process is currently using TCP port 5000, preventing the current application from binding to it.
 
 Possible Fix:
-Identify and stop the process using port 5000 or configure the application to use a different port.
+Identify and stop the process using port 5000 or configure the application to run on a different port.
 
 Explanation:
-The application is trying to listen on a port that is already occupied by another process.
-Use Cases
-Debugging backend server errors
-Understanding MongoDB connection issues
-Analyzing API failures
-Debugging React/frontend runtime errors
-Creating incident reports
-Documenting production issues
-Helping junior developers understand complex logs
-Project Highlights
-Integrated Gemini API with an Express.js backend for structured AI log analysis.
-Designed a modern SaaS-style dashboard using React.js and Tailwind CSS.
-Implemented MongoDB-based history with search, severity filters, analytics charts, delete functionality, and detailed report view.
-Added developer-focused features like .log file upload, sample logs, copy report, download report, and dynamic backend status.
-Resume Highlight
+The application is trying to use a network port that is already occupied by another process.
+```
 
-Built an AI-powered production log debugging platform using React.js, Node.js, Express.js, MongoDB, and Gemini API that analyzes raw logs, classifies severity, identifies root causes, suggests fixes, stores analysis history, and generates downloadable debugging reports.
+## API Endpoints
 
-Future Improvements
-User authentication
-Team-based workspaces
-Real-time log streaming using WebSockets
-Docker support
-PDF report export
-Role-based access control
-Slack/Jira integration for incident reporting
-Author
+### Check Backend Status
+
+```txt
+GET /
+```
+
+### Analyze Log
+
+```txt
+POST /api/analyze-log
+```
+
+Request body:
+
+```json
+{
+  "logText": "Error: listen EADDRINUSE: address already in use :::5000"
+}
+```
+
+### Fetch Log History
+
+```txt
+GET /api/logs
+```
+
+### Delete Log
+
+```txt
+DELETE /api/logs/:id
+```
+
+## Current Limitations
+
+* The platform currently supports text-based logs only.
+* PDF report export is not added yet.
+* Authentication is not implemented.
+* Real-time log streaming is not implemented.
+* Team-based incident collaboration can be added in future versions.
+
+## Future Improvements
+
+* Add user authentication
+* Add team-based incident workspaces
+* Add real-time log streaming using WebSockets
+* Add PDF report download
+* Add Docker support
+* Add Slack/Jira integration for incident reporting
+* Add role-based access control
+* Add advanced AI-based log grouping and duplicate error detection
+
+## Author
 
 Dhruv Gaur
 
+## Live Demo
 
----
-
-README update karne ke baad ye commands run kar dena:
-
-```bash
-git add README.md
-git commit -m "Update README with live deployment links"
-git push
+Frontend:https://log-lens-ai-seven.vercel.app/ 
+Backend: https://loglens-ai-backend.onrender.com
